@@ -1,0 +1,45 @@
+{
+  "name": "electron-react-template",
+  "version": "1.0.0",
+  "main": "./main/main.js",
+  "repository": "git@github.com:BillHao007/electron-react-template.git",
+  "author": "BH13 <billhao007@163.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "cross-env PORT=8081 NODE_ENV=development npm run start:app",
+    "start:app": "concurrently --kill-others \"npm run start:renderer\" \"wait-on http://localhost:8081 && npm run start:main\" ",
+    "start:main": "electron .",
+    "start:renderer": "cd renderer && cross-env BROWSER=none npm start",
+    "build": "cross-env NODE_ENV=production && npm run build:renderer && electron-builder",
+    "build:test": "cross-env NODE_ENV=production npm run build:renderer && npm run start:main",
+    "build:renderer": "cd renderer && npm run build",
+    "rm": "cd renderer && npm uninstall",
+    "i": "cd renderer && npm install"
+  },
+  "dependencies": {
+    "@types/node": "^20.14.9",
+    "classnames": "^2.5.1",
+    "find-process": "^1.4.7",
+    "typescript": "^5.5.3"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^31.1.0",
+    "electron-builder": "^24.13.3",
+    "ts-node": "^10.9.2",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.bh13.electronReactTemplate",
+    "productName": "electronReactTemplate",
+    "files": [
+      "renderer/build/**/*",
+      "node_modules/**/*",
+      "main/**/*"
+    ],
+    "directories": {
+      "output": "build"
+    }
+  }
+}
