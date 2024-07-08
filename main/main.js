@@ -2,9 +2,6 @@
 
 // Modules to control application life and create native browser window
 
-// import { app, BrowserWindow } from 'electron';
-// import path from 'path';
-// import findProcess from 'find-process';
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const findProcess = require('find-process');
